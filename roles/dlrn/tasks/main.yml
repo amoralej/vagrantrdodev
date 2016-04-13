@@ -1,0 +1,17 @@
+---
+- name: install puppet
+  yum: 
+    name: "puppet"
+    state: "latest"
+
+- name: clone git repo puppet-dlrn
+  become: false
+  git: 
+    repo: "https://github.com/rdo-infra/puppet-dlrn.git"
+    dest: "puppet-dlrn"
+
+- name: install packages for puppet tests
+  yum:
+    name: "rubygem-bundler"
+    state: "latest"
+

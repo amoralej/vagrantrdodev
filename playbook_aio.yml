@@ -1,0 +1,11 @@
+- hosts: all
+  become: true
+  vars:
+    #custom_repo: "https://dmsimard.com/rdo-mitaka-testing.repo"
+    repo_rpm: "centos-release-openstack-mitaka"
+    allinone: true
+    epel_repo: false
+    packstack_add_options: "--enable-rdo-testing=y"
+  roles:
+  - base
+  - rdo

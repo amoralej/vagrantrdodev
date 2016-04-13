@@ -1,0 +1,30 @@
+---
+- name: uninstall RDO current repos
+  yum: 
+    name: rdo-release
+    state: "absent"
+
+- name: install RDO current repos
+  yum: 
+    name: "{{ repo_rpm }}" 
+  when: "custom_repo is not defined and repo_rpm is defined"
+
+- name: copy custom.repo file
+  get_url:
+    url: "{{ custom_repo }}"
+    dest: /etc/yum.repos.d/custom.repo
+  when: "custom_repo is defined"
+
+- name: install packstack
+  yum:
+    name: openstack-packstack
+    state: "latest"
+    update_cache: "yes"
+  when: "custom_repo is defined or repo_rpm is defined"
+
+- name: execute allinone
+ # command: packstack --allinone --mariadb-install=y --os-glance-install=y --os-cinder-install=y --os-manila-install=y --os-nova-install=y --os-neutron-install=y --os-horizon-install=y --os-swift-install=y --os-ceilometer-install=y --os-aodh-install=y --os-gnocchi-install=y --os-sahara-install=y --os-heat-install=y --os-trove-install=y --os-ironic-install=y --os-client-install=y --nagios-install=n --os-heat-cloudwatch-install=y --os-heat-cfn-install=y  
+  command: packstack --allinone --nagios-install=n --provision-tempest=y --run-tempest=y {{ packstack_add_options | default('') }}
+  when: "allinone is defined and allinone == true"
+ 
+
