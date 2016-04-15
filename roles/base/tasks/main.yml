@@ -18,13 +18,27 @@
 - name: install epel repo
   yum: 
     name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
-  when: "epel_repo is defined and epel_repo == true"
+
+- name: install git-review
+  yum: 
+    name: "git-review"
+
+- name: install git-review
+  yum: 
+    name: "git-review"
+
+- name: install epel repo
+  yum: 
+    name: "epel-release-latest7"
+    state: "absent"
+  when: "epel_repo is not defined or epel_repo != true"
 
 - name: update system
   yum: 
     name: "*"
     state: "latest"
     update_cache: "yes"
+  when: "update is defined and update == true"
   notify:
     - Reboot VM
     - Waiting for Server
