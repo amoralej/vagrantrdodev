@@ -19,15 +19,11 @@
   yum: 
     name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
 
-- name: install git-review
+- name: install epel utilities
   yum: 
-    name: "git-review"
+    name: git-review,python-pep8
 
-- name: install git-review
-  yum: 
-    name: "git-review"
-
-- name: install epel repo
+- name: uninstall epel repo
   yum: 
     name: "epel-release-latest7"
     state: "absent"
