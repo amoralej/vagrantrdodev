@@ -1,0 +1,16 @@
+---
+- name: copy dlrn.cfg mock config file
+  copy:
+    src: dlrn.cfg
+    dest: /etc/mock/dlrn.cfg
+
+- name: copy rdopkg repo file
+  get_url:
+    url: https://copr.fedorainfracloud.org/coprs/jruzicka/rdopkg/repo/epel-7/jruzicka-rdopkg-epel-7.repo 
+    dest: /etc/yum.repos.d/jruzicka-rdopkg-epel-7.repo
+
+- name: install RPM utilities
+  yum: 
+    name: "{{ item }}"
+    state: "latest"
+  with_items: "{{ rpm_utilities }}"

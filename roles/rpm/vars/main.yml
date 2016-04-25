@@ -1,0 +1,7 @@
+---
+# vars file for dlrn
+rpm_utilities:
+  - mock
+  - rpmlint
+  - rpmdevtools
+  - rdopkg
