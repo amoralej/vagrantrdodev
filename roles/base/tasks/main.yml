@@ -1,31 +1,16 @@
 ---
-#- hostname:
-#    name: "{{ inventory_hostname }}"
+- name: install epel repository
+  yum: 
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm" 
 
 - name: install utilities
   yum: 
-    name: sysstat,git,wget,vim-enhanced
-    state: "present"
-
-- name: install powerline
-  yum: 
-    name: "ftp://fr2.rpmfind.net/linux/fedora/linux/releases/23/Everything/x86_64/os/Packages/p/powerline-2.2-2.fc23.x86_64.rpm"
-
-- name: install vim-powerline
-  yum: 
-    name: "ftp://fr2.rpmfind.net/linux/fedora/linux/releases/23/Everything/x86_64/os/Packages/v/vim-powerline-2.2-2.fc23.noarch.rpm"
-
-- name: install epel repo
-  yum: 
-    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
-
-- name: install epel utilities
-  yum: 
-    name: git-review,python-pep8
+    name: "{{ item }}"
+  with_items: "{{ utilities }}"
 
 - name: uninstall epel repo
   yum: 
-    name: "epel-release-latest7"
+    name: "epel-release"
     state: "absent"
   when: "epel_repo is not defined or epel_repo != true"
 

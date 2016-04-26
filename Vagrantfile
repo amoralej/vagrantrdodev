@@ -14,8 +14,8 @@ Vagrant.configure(2) do |config|
     libvirt.host = "localhost"
     libvirt.connect_via_ssh = true
     libvirt.username = "root"
-    libvirt.storage_pool_name = "home"
-    libvirt.memory = 2048
+    libvirt.storage_pool_name = "default"
+    libvirt.memory = 4096
     libvirt.cpus = 2
   end
 

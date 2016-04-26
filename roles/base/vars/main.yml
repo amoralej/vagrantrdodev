@@ -1,2 +1,11 @@
 ---
 # vars file for rdo
+utilities:
+  - "sysstat"
+  - "git"
+  - "wget"
+  - "vim-enhanced"
+  - "ftp://fr2.rpmfind.net/linux/fedora/linux/releases/23/Everything/x86_64/os/Packages/p/powerline-2.2-2.fc23.x86_64.rpm"  
+  - "ftp://fr2.rpmfind.net/linux/fedora/linux/releases/23/Everything/x86_64/os/Packages/v/vim-powerline-2.2-2.fc23.noarch.rpm"
+  - "git-review"
+  - "python-pep8"
