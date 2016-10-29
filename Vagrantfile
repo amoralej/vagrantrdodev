@@ -15,8 +15,8 @@ Vagrant.configure(2) do |config|
     libvirt.connect_via_ssh = true
     libvirt.username = "root"
     libvirt.storage_pool_name = "default"
-    libvirt.memory = 4096
-    libvirt.cpus = 2
+    libvirt.memory = 6144
+    libvirt.cpus = 3
   end
 
   config.vm.provider "openstack" do |os, override|
