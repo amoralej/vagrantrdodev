@@ -1,11 +1,13 @@
 - hosts: all
   become: true
   vars:
-    #custom_repo: "https://dmsimard.com/rdo-mitaka-testing.repo"
-    repo_rpm: "centos-release-openstack-mitaka"
-    allinone: true
     epel_repo: false
-    packstack_add_options: "--enable-rdo-testing=y"
+    update: false
+    allinone: true
+    custom_repo: 
+      - "http://trunk.rdoproject.org/centos7-newton/current-passed-ci/delorean.repo"
+      - "http://trunk.rdoproject.org/centos7-newton/delorean-deps.repo"
+    packstack_add_options: "--os-swift-install=n"
   roles:
   - base
   - rdo

@@ -11,8 +11,9 @@
 
 - name: copy custom.repo file
   get_url:
-    url: "{{ custom_repo }}"
-    dest: /etc/yum.repos.d/custom.repo
+    url: "{{ item }}"
+    dest: /etc/yum.repos.d/
+  with_items: "{{custom_repo}}"
   when: "custom_repo is defined"
 
 - name: install packstack
